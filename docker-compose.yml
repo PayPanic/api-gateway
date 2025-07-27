@@ -4,13 +4,13 @@ services:
   api-gateway:
     build: .
     container_name: api-gateway
+    env_file: .env
     ports:
       - "3000:3000"
-    environment:
-      - PAYMENT_SERVICE_URL=http://payment-service:4000
-      - TRANSACTION_SERVICE_URL=http://transaction-service:4100
+      - "9231:9231"
     networks:
       - shared-infra
+    entrypoint: [ "/bin/sh", "-c", "sleep 10 && node --inspect=0.0.0.0:9231 src/app.js" ]
 
 networks:
   shared-infra:

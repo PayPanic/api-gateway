@@ -7,4 +7,5 @@ RUN npm install
 COPY . .
 
 EXPOSE 3000
-CMD ["node", "src/app.js"]
+EXPOSE 9231
+CMD ["node", "--inspect=0.0.0.0:9231", "src/app.js"]
